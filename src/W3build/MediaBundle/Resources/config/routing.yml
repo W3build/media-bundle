@@ -1,0 +1,4 @@
+cms_cover:
+    resource: "@W3buildMediaBundle/Controller"
+    type:     annotation
+    prefix:   /

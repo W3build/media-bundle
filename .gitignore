@@ -1,0 +1,9 @@
+# Created by .ignore support plugin (hsz.mobi)
+.idea
+
+/vendor/*
+
+!/vendor/.gitkeep
+
+composer.lock
+composer.phar

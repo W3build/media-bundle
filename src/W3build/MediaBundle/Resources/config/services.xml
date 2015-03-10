@@ -1,0 +1,42 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="media.class.path">W3build\MediaBundle\Service</parameter>
+        <parameter key="media.upload.from_url.class">%media.class.path%\UploadFromUrl</parameter>
+        <parameter key="media.image.class">%media.class.path%\Image</parameter>
+        <parameter key="media.image.asset.class">%media.class.path%\Image\Asset</parameter>
+        <parameter key="media.repository.dir">W3build\MediaBundle\Repository</parameter>
+        <parameter key="media.twig.dir">W3build\MediaBundle\Twig</parameter>
+    </parameters>
+
+    <services>
+        <service id="media.upload.from_url" class="%media.upload.from_url.class%">
+            <argument type="service" id="doctrine.orm.default_entity_manager" />
+        </service>
+
+        <service id="media.image" class="%media.image.class%">
+        </service>
+
+        <service id="media.image.asset" class="%media.image.asset.class%">
+            <argument type="service" id="assetic.asset_factory" />
+        </service>
+
+        <service id="repository.media.image" class="%media.repository.dir%\ImageRepository">
+            <argument type="service" id="doctrine.orm.default_entity_manager" />
+        </service>
+
+        <service id="repository.media.you_tube" class="%media.repository.dir%\YouTubeRepository">
+            <argument type="service" id="doctrine.orm.default_entity_manager" />
+        </service>
+
+        <service id="twig.media.image_widget" class="%media.twig.dir%\ImageWidget">
+            <tag name="twig.extension" />
+        </service>
+
+    </services>
+
+</container>
